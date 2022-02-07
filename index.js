@@ -5,8 +5,7 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-
-const manager = () => {
+const promptManager = () => {
     return inquirer.prompt ([
         {
         type: 'input',
@@ -64,13 +63,8 @@ const manager = () => {
 
 };
 
-const promptMenu = (data) => {
-    console.log (`
-    =====
-    Role
-    =====
+const promptMenu = Teamdata => {
     
-    `)
     return inquirer.prompt ([
         {
             type: 'list',
@@ -86,15 +80,22 @@ const promptMenu = (data) => {
                }
             }
         }
-    ]) 
+    ])
     .then(answer => {
-        console.log(answer.title);
+        console.log(answer.title); {
+    if (answer.title === "add an Engineer") {
+        return promptEngineer();
+} else if (answer.title === "add Intern") {
+        return promptIntern();
+} else if (answer.title === "finish building my team") {
+        return promptRole();
+} 
+        return promptMenu();
+}
     })
 }
-
     
-    
-const promptEngineer = (answer) => {
+const promptEngineer = () => {
     return inquirer.prompt ([
         {
             type: 'input',
@@ -148,12 +149,117 @@ const promptEngineer = (answer) => {
                     return false;
                 }
             }
-        }, 
-        promptMenu()
-    ])
+        },  
+
+    
+    ]) .then(answer => {
+        console.log(answer.github); {
+    if (answer.github === answer.github) {
+        return promptMenu();
+};
+
+        }
+    })
 }
 
-const writeToFile = (fileName, data) => {
+
+const promptIntern = () => {
+    return inquirer.prompt ([
+    {  type: 'input',
+        name: 'name',
+        message: 'What is the Interns name? (Required)',
+        validate: nameInput => {
+            if(nameInput) {
+                return true;
+            } else {
+                console.log("Enter Interns name.");
+                return false;
+            }
+        }
+    },
+    { 
+        type: 'input',
+        name: 'id',
+        message: 'What is the Interns employee id number? (Required)',
+        validate: idInput => {
+            if(idInput) {
+                return true;
+            } else {
+                console.log('Enter Interns id number.');
+                return false;
+            }
+        }
+
+    },
+    {
+            type: 'input',
+            name: 'email',
+            message: 'What is the Interns email address? (Required)',
+            validate: emailInput => {
+                if(emailInput) {
+                    return true;
+                } else {
+                    console.log('Enter your Interns email address.');
+                    return false;
+                }
+            }
+        },
+        {
+                type: 'input',
+                name: 'school',
+                message: 'What is the Interns School name? (Required)',
+                validate: schoolInput => {
+                    if(schoolInput) {
+                        return true;
+                    } else {
+                        console.log('Enter Interns school name.');
+                        return false;
+                    }
+                }
+            },  
+
+    ])
+    .then(answer => {
+        console.log(answer.school); {
+    if (answer.school === answer.school) {
+        return promptMenu();
+};
+
+        }
+    })
+}
+const promptRole = (TeamData) => {
+    console.log (`
+    =====
+    Role
+    =====
+    `);
+    if(!TeamData.Roles) {
+        TeamData.Roles = [];
+    }
+    return inquirer.prompt ([
+        {
+            type: 'confirm',
+            name: 'confirmDone',
+            message: 'Are you done building your team?',
+            default: false
+        }
+    ])
+    
+}
+
+    
+function employees() {
+    inquirer.prompt
+    promptManager()
+    .then(promptMenu)
+    .then(TeamData => {
+     const HTML = generateHTML(TeamData);
+       writeToFile(HTML)
+   });
+}
+
+const writeToFile = (fileName, TeamData) => {
     return new Promise ((resolve, reject) => {
     fs.writeFile('./dist/index.html', fileName,  err => {
        if (err) {
@@ -168,16 +274,5 @@ const writeToFile = (fileName, data) => {
     });
 });
 }
-    
-function employees() {
-    inquirer.prompt
-    manager()
-    .then(promptMenu)
-    .then(data => {
-     const HTML = generateHTML(data);
-       writeToFile(HTML)
-   });
-}
 
 employees();
-    
