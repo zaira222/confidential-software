@@ -22,14 +22,14 @@ const Employee = require("../lib/Employee");
 <div class ="col-sm-4">
 <div class ="card" style ="width: 15rem;">
   <div class="card-body">
-      <h2 class="card-title-Position">${Manager.name}</h2>
-      <h3 class="firstname">Name: ${Manager.Name}</h3>
+      <h2 class="card-title-Position"> ${Manager.Name}</h2>
+      <h3 class="firstname">Name: ${Manager.name}</h3>
       <hr>
   </div
    
   <ul class="information list-group-flush">
       <li class="list-group-item-id">Id: ${Manager.id}</li>
-      <li class="list-group-item-office">Office Number:${Manager.officeNumber}</li>
+      <li class="list-group-item-office">Office Number: ${Manager.officeNumber}</li>
   </ul>
  
   <div class="card-body-reach">
@@ -44,9 +44,9 @@ const Employee = require("../lib/Employee");
 
 const generateEngineer = () => { 
   new Employee(Name, id, email); {
-    Name = Manager.Name;
-    id = Manager.id;
-    email = Manager.email;
+    Name = Engineer.Name;
+    id = Engineer.id;
+    email = Engineer.email;
   }
   new Engineer(Name = ' ', id = ' ', email = ' ', github = ' '); {
     Name = Engineer.Name;
@@ -60,8 +60,8 @@ const generateEngineer = () => {
 <div class= "col-sm-4">
 <div class="card" style="width: 15rem;">
 <div class="card-body">
-    <h2 class="Position">${Engineer.name}</h2>
-    <h3 class="firstname">Name: ${Engineer.Name}</h3>
+    <h2 class="Position"> ${Engineer.Name}</h2>
+    <h3 class="firstname"> ${Engineer.name}</h3>
     <hr>
 </div>
 <ul class="information list-group-flush">
@@ -82,9 +82,9 @@ const generateEngineer = () => {
   
 const generateIntern  = () => {
   new Employee(Name, id, email); {
-    Name = Manager.Name;
-    id = Manager.id;
-    email = Manager.email;
+    Name = Intern.Name;
+    id = Intern.id;
+    email = Intern.email;
   }
   new Intern(Name = ' ', email = ' ', id = ' ', school = ' '); {
     name = Intern.ame;
@@ -97,8 +97,8 @@ const generateIntern  = () => {
 <div class= "col-sm-4">
 <div class="card" style="width: 15rem;">
 <div class="card-body">
-    <h2 class="Position"> ${Intern.name}</h2>
-    <h3 class="firstname">Name: ${Intern.Name}</h3>
+    <h2 class="Position"> ${Intern.Name}</h2>
+    <h3 class="firstname"> ${Intern.name}</h3>
     <hr>
 </div>
 

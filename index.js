@@ -123,9 +123,11 @@ if(!TeamData.Role) {
 } 
         return promptMenu();
     
+} 
+    
+})
 }
-    });
-}
+
     
 const promptEngineer = () => {
     console.log(    `
@@ -303,7 +305,8 @@ const promptRole = () => {
             message: 'Are you done building your team?',
             default: false
         } 
-    ]) .then(RoleData => {
+    ]) 
+    .then(RoleData => {
         TeamData.Role.push(RoleData);
         if(RoleData.confirmDoneRole) {
             return promptRole(TeamData);
