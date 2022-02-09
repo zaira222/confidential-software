@@ -1,4 +1,21 @@
+ * {
+    margin: 0;
+ }
+
 h1 {
     text-align: center;
-    background-color: yellow;
+    background-color: red;
+}
+
+hr {
+    width: 100%;
+}
+
+.card {
+    background-color: turquoise;
+    color: red;
+}
+
+.card-Engineer {
+    margin-bottom: -50px;
 }

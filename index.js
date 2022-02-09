@@ -5,19 +5,30 @@ const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-const promptManager = () => {
+const TeamData = [];
+
+ const promptManager = () => {
+    console.log(    `
+    ============
+    Manager
+    ============
+    
+    `)
+   if(!TeamData.Manager) {
+       TeamData.Manager = [];
+   }
     return inquirer.prompt ([
         {
         type: 'input',
-        name: 'name',
+        name: 'Name',
         message: 'What is the Managers name? (Required)',
-        validate: nameInput => {
-            if(nameInput) {
+        validate: NameInput => {
+            if(NameInput) {
                 return true;
             } else {
                 console.log('Enter Managers name.');
                 return false;
-            }
+            } 
         }
      },
      {
@@ -59,11 +70,31 @@ const promptManager = () => {
             }
         }
     }
-    ])
-
-};
-
-const promptMenu = Teamdata => {
+    ]) .then(answer => {
+        console.log(answer.Name, answer.id, answer.email, answer.officeNumber); {
+        new Employee 
+       new Manager (Name = answer.Name, id = answer.id, email = answer.email, officeNumber = answer.officeNumber); {
+            Manager.Name = Name;
+            Manager.id = id;
+            Manager.email = email;
+            Manager.officeNumber = officeNumber;
+           
+        TeamData.push(new Manager)
+        return promptMenu(); 
+        }
+    }
+})
+ }
+const promptMenu = () => {
+    console.log(
+`
+================
+Role
+================
+`);
+if(!TeamData.Role) {
+    TeamData.Role = [];
+}
     
     return inquirer.prompt ([
         {
@@ -91,18 +122,28 @@ const promptMenu = Teamdata => {
         return promptRole();
 } 
         return promptMenu();
+    
 }
-    })
+    });
 }
     
 const promptEngineer = () => {
+    console.log(    `
+    ============
+    Role
+    ============
+    
+    `)
+   if(!TeamData.Role) {
+       TeamData.Role = [];
+   }
     return inquirer.prompt ([
         {
             type: 'input',
-            name: 'name',
+            name: 'Name',
             message: 'What is the Engineers name? (Required)',
-            validate: nameInput => {
-                if(nameInput) {
+            validate: NameInput => {
+                if(NameInput) {
                     return true;
                 } else {
                     console.log('Enter Engineers name?');
@@ -152,24 +193,37 @@ const promptEngineer = () => {
         },  
 
     
-    ]) .then(answer => {
-        console.log(answer.github); {
-    if (answer.github === answer.github) {
-        return promptMenu();
-};
-
+    ])  .then(answer => {
+        console.log(answer.Name, answer.id, answer.email, answer.github); {
+        new Employee
+       new Engineer (Name = answer.Name, id = answer.id, email = answer.email,  github = answer.github); {
+            Engineer.Name = Name;
+            Engineer.id = id;
+            Engineer.email = email;
+            Engineer.github = github
+           
+        TeamData.push(new Engineer)
+        return promptMenu(); 
         }
-    })
-}
-
-
+    }
+})
+ }
 const promptIntern = () => {
+    console.log(    `
+    ============
+    Role
+    ============
+    
+    `)
+   if(!TeamData.Role) {
+       TeamData.Role = [];
+   }
     return inquirer.prompt ([
     {  type: 'input',
-        name: 'name',
+        name: 'Name',
         message: 'What is the Interns name? (Required)',
-        validate: nameInput => {
-            if(nameInput) {
+        validate: NameInput => {
+            if(NameInput) {
                 return true;
             } else {
                 console.log("Enter Interns name.");
@@ -218,46 +272,48 @@ const promptIntern = () => {
                 }
             },  
 
-    ])
-    .then(answer => {
-        console.log(answer.school); {
-    if (answer.school === answer.school) {
-        return promptMenu();
-};
-
+    ]) .then(answer => {
+        console.log(answer.Name, answer.id, answer.email, answer.school); {
+       new Employee
+       new Intern (Name = answer.Name, id = answer.id, email = answer.email,  school = answer.school); {
+            Intern.Name = Name;
+            Intern.id = id;
+            Intern.email = email;
+            Intern.school = school;           
+        TeamData.push(new Intern)
+        return promptMenu(); 
         }
-    })
-}
-const promptRole = (TeamData) => {
-    console.log (`
-    =====
-    Role
-    =====
-    `);
-    if(!TeamData.Roles) {
-        TeamData.Roles = [];
     }
+})
+ }
+const promptRole = () => {
+    console.log(    `
+    ============
+    Role
+    ============
+    
+    `)
+   if(!TeamData.Role) {
+       TeamData.Role = [];
+   }
     return inquirer.prompt ([
         {
             type: 'confirm',
             name: 'confirmDone',
             message: 'Are you done building your team?',
             default: false
-        }
-    ])
-    
-}
+        } 
+    ]) .then(RoleData => {
+        TeamData.Role.push(RoleData);
+        if(RoleData.confirmDoneRole) {
+            return promptRole(TeamData);
+        } else {
+            return TeamData;
+            }
+        });
+    } 
 
-    
-function employees() {
-    inquirer.prompt
-    promptManager()
-    .then(promptMenu)
-    .then(TeamData => {
-     const HTML = generateHTML(TeamData);
-       writeToFile(HTML)
-   });
-}
+
 
 const writeToFile = (fileName, TeamData) => {
     return new Promise ((resolve, reject) => {
@@ -273,6 +329,19 @@ const writeToFile = (fileName, TeamData) => {
         });
     });
 });
+};
+
+
+
+
+function employees() {
+    promptManager()
+    .then(answers => {
+     const html = generateHTML(TeamData);
+       writeToFile(html);
+     
+   });
 }
 
-employees();
+
+employees()
