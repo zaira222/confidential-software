@@ -23,7 +23,7 @@ const Employee = require("../lib/Employee");
 <div class ="card" style ="width: 15rem;">
   <div class="card-body">
       <h2 class="card-title-Position"> ${Manager.Name}</h2>
-      <h3 class="firstname">Name: ${Manager.name}</h3>
+      <h3 class="firstname"> ${Manager.name}</h3>
       <hr>
   </div
    

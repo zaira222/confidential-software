@@ -10,7 +10,10 @@ To be able to use this project you will need to git clone this file to your loca
 Once installation process is done the way to activate the questions is typing node index.js. Once its activated answer the questions. Then you will see an option for a position after each option. Once you are done it will say Index html file done. The generated file will appear in the dist folder under index.html.
 
 ## Tests 
-I have added video links to demonstrate how to use Confidential Software
+I have added video link to demonstrate how to use Confidential Software for a more in 
+depth tutorial.
+https://drive.google.com/file/d/1TGdyBvcmZg6MimQfIC1E9thwWiXmQ92e/view
+
 
 ## Questions
 If you have any questions feel free to contact me through my Github.
